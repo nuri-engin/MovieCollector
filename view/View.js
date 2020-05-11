@@ -165,9 +165,22 @@ class View {
         });
     }
 
-    bindAddMovie(handler) {
-        console.log("ADD STEP-2: View > bindAddMovie");
+    // bindAddMovie(handler) {
+    //     console.log("ADD STEP-2: View > bindAddMovie");
+    //
+    //     let me = this;
+    //
+    //     me.form.addEventListener('submit', event => {
+    //         event.preventDefault();
+    //
+    //         if (me._movieText) {
+    //             handler(me._movieText);
+    //             me._resetInput();
+    //         }
+    //     });
+    // }
 
+    bindSearchMovie(handler) {
         let me = this;
 
         me.form.addEventListener('submit', event => {
@@ -175,7 +188,6 @@ class View {
 
             if (me._movieText) {
                 handler(me._movieText);
-                me._resetInput();
             }
         });
     }

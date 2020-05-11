@@ -46,7 +46,14 @@ class MovieModel {
     }
 
     searchMovie(movieText) {
-
+        fetch(`http://www.omdbapi.com/?apikey=628b3dc3&s=` + movieText)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     deleteMovie(id) {

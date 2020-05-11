@@ -25,8 +25,8 @@ class Controller {
          *
          * https://www.evernote.com/l/ASK_15tMcEhLMa6TEWaiY-_g8Ge4mG62fS4B/image.png
          */
-        console.log("ADD STEP-1: Controller > view.bindAddMovie");
-        me.view.bindAddMovie(me.handleAddMovie);
+        //console.log("ADD STEP-1: Controller > view.bindAddMovie");
+        //me.view.bindAddMovie(me.handleAddMovie);
 
         me.view.bindSearchMovie(me.handleSearchMovie);
 
