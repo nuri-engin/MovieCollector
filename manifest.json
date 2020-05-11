@@ -1,11 +1,11 @@
 {
-  "name": "Movie Collector v1",
+  "name": "Movie Collector v2",
   "description": "Search and save!",
-  "version": "1.0",
+  "version": "2.0",
 
   "content_scripts": [{
     "matches": ["<all_urls>"],
-    "js": ["popup.js"]
+    "js": ["app.js"]
   }],
 
   "browser_action": {
@@ -21,7 +21,6 @@
   ],
 
   "content_security_policy": "script-src 'self' https://apis.google.com; object-src 'self'",
-
 
   "background": {
     "scripts": ["background.js"],

@@ -1,59 +1,29 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-  <title>Movie Collector</title>
-  <link rel="stylesheet" type="text/css" href="collector.css">
-    <script src="popup.js"></script>
-  </head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <body>
+  <title>Movie Collector v2</title>
 
-  <!-- SAMPLE APP @ https://codepen.io/chasebank/pen/wpQBKV-->
-  <div id="app">
+  <link rel="stylesheet" href="style.css">
+</head>
 
-      <!-- HELLO SECTION -->
-      <div class="info-section">
-          <h1>Movie Collector v1</h1>
-          <p>Create and organize your movie list!</p>
-      </div>
+<body>
+  <div id="root"></div>
 
-      <hr style="border: 1px solid#805466;" />
-      <br/>
+  <!-- Modules exist with  -->
+  <script src="./model/MovieModel.js" type="module"></script>
+  <script src="./controller/Controller.js" type="module"></script>
+  <script src="./view/View.js" type="module"></script>
 
-      <!-- FORM SECTION -->
-      <div class="form-container">
-          <form id="movie-search" class="search">
-              <label>
-                  <span>Search for a movie</span>
-                  <input type="text"  id="searchTerm" placeholder="Movie...">
-              </label>
-              <button type="submit" id="searchBtn">Search</button>
-          </form>
-      </div>
+  <!-- The dynamic part to achieve multi-lang app purpose -->
+  <script src="./locale/english.js" type="module"></script>
 
-      <div class="list-buttons-container">
-          <div class="list-button-container">
-              <button type="submit" id="showMoviesBtn">List</button>
-          </div>
+  <!-- Provide a minified script -->
+  <script src="app.js" type="module"></script>
+</body>
 
-          <div class="movie-bin-buttons-container">
-              <button type="submit" id="exportListBtn">Export</button>
-              <button type="submit" id="importListBtn">Import</button>
-              <button type="submit" id="jsonBinBtn">BIN</button>
-          </div>
-
-          <br /> <br /> <br />
-          <button type="submit" id="clearListBtn"> Clear Display Table</button>
-      </div>
-
-      <div id="saved-movie-list" class="show-saved-movies">
-          <!-- LIST SECTION -->
-          <div id="searchResultList">
-              <ul id="searchResult" class="search-results">
-              </ul>
-          </div>
-
-      </div>
-  </div>
-  </body>
 </html>
