@@ -1,0 +1,59 @@
+<html>
+
+<head>
+  <title>Movie Collector</title>
+  <link rel="stylesheet" type="text/css" href="collector.css">
+    <script src="popup.js"></script>
+  </head>
+
+  <body>
+
+  <!-- SAMPLE APP @ https://codepen.io/chasebank/pen/wpQBKV-->
+  <div id="app">
+
+      <!-- HELLO SECTION -->
+      <div class="info-section">
+          <h1>Movie Collector v1</h1>
+          <p>Create and organize your movie list!</p>
+      </div>
+
+      <hr style="border: 1px solid#805466;" />
+      <br/>
+
+      <!-- FORM SECTION -->
+      <div class="form-container">
+          <form id="movie-search" class="search">
+              <label>
+                  <span>Search for a movie</span>
+                  <input type="text"  id="searchTerm" placeholder="Movie...">
+              </label>
+              <button type="submit" id="searchBtn">Search</button>
+          </form>
+      </div>
+
+      <div class="list-buttons-container">
+          <div class="list-button-container">
+              <button type="submit" id="showMoviesBtn">List</button>
+          </div>
+
+          <div class="movie-bin-buttons-container">
+              <button type="submit" id="exportListBtn">Export</button>
+              <button type="submit" id="importListBtn">Import</button>
+              <button type="submit" id="jsonBinBtn">BIN</button>
+          </div>
+
+          <br /> <br /> <br />
+          <button type="submit" id="clearListBtn"> Clear Display Table</button>
+      </div>
+
+      <div id="saved-movie-list" class="show-saved-movies">
+          <!-- LIST SECTION -->
+          <div id="searchResultList">
+              <ul id="searchResult" class="search-results">
+              </ul>
+          </div>
+
+      </div>
+  </div>
+  </body>
+</html>
