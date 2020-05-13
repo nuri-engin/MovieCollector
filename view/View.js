@@ -109,50 +109,72 @@ class View {
       return element
     }
 
-    displayMovies(movies) {
-      // Delete all nodes
-      while (this.movieList.firstChild) {
-        this.movieList.removeChild(this.movieList.firstChild)
-      }
+    displayMovies({movies, fromSearch}) {
+        let me = this;
 
-      // Show default message
-      if (movies.length === 0) {
-        const p = this.createElement('p');
-        p.textContent = translations.noAnySavedMovie;
-        this.movieList.append(p)
-      } else {
-        // Create nodes
-        movies.forEach(movie => {
-          const li = this.createElement('li');
-          li.id = movie.id;
+        //Assign defaults.
+        fromSearch = fromSearch || false;
+        movies = movies || [];
 
-          const checkbox = this.createElement('input');
-          checkbox.type = 'checkbox';
-          checkbox.checked = movie.complete;
+        if (!!fromSearch) {
+            movies = movies.Search
+        }
 
-          const span = this.createElement('span');
-          span.contentEditable = true;
-          span.classList.add('editable');
+        // Delete all nodes
+        while (me.movieList.firstChild) {
+            me.movieList.removeChild(me.movieList.firstChild)
+        }
 
-          if (movie.complete) {
-            const strike = this.createElement('s');
-            strike.textContent = movie.text;
-            span.append(strike)
-          } else {
-            span.textContent = movie.text
-          }
+        // Show default message
+        if (movies.length === 0) {
+            const p = me.createElement('p');
+            p.textContent = translations.noAnySavedMovie;
+            me.movieList.append(p)
+        } else {
+            // Create nodes
+            movies.forEach(movie => {
+            const li = me.createElement('li');
+            li.id = movie.id;
 
-          const deleteButton = this.createElement('button', 'delete');
-          deleteButton.textContent = translations.delete;
-          li.append(checkbox, span, deleteButton);
+            const checkbox = me.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.checked = false;
 
-          // Append nodes
-          this.movieList.append(li)
+            const poster = me.createElement('img');
+            poster.src = movie.Poster;
+            poster.setAttribute('width', '100px');
+            // poster.setAttribute('heigth', '20px');
+
+            const span = me.createElement('span');
+            span.contentEditable = true;
+            span.classList.add('editable');
+
+            if (movie.complete) {
+                const strike = me.createElement('s');
+                strike.textContent = movie.text;
+                span.append(strike)
+            } else {
+                span.textContent = movie.Title
+            }
+
+            let cardButton;
+            if (!!fromSearch) {
+                cardButton = me.createElement('button', 'delete');
+                cardButton.textContent = translations.add;
+            } else {
+                cardButton = me.createElement('button', 'delete');
+                cardButton.textContent = translations.delete;
+            }
+
+            // li.append(checkbox, span, deleteButton);
+            li.append(poster, span, cardButton);
+
+            // Append nodes
+            me.movieList.append(li)
         })
       }
-
-      // Debugging
-      //console.log(movies)
+        // Debugging
+        //console.log(movies)
     }
 
     _initLocalListeners() {
@@ -165,20 +187,20 @@ class View {
         });
     }
 
-    // bindAddMovie(handler) {
-    //     console.log("ADD STEP-2: View > bindAddMovie");
-    //
-    //     let me = this;
-    //
-    //     me.form.addEventListener('submit', event => {
-    //         event.preventDefault();
-    //
-    //         if (me._movieText) {
-    //             handler(me._movieText);
-    //             me._resetInput();
-    //         }
-    //     });
-    // }
+    bindAddMovie(handler) {
+        console.log("ADD STEP-2: View > bindAddMovie");
+
+        let me = this;
+
+        me.form.addEventListener('submit', event => {
+            event.preventDefault();
+
+            if (me._movieText) {
+                handler(me._movieText);
+                me._resetInput();
+            }
+        });
+    }
 
     bindSearchMovie(handler) {
         let me = this;

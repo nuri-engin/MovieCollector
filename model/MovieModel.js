@@ -46,10 +46,12 @@ class MovieModel {
     }
 
     searchMovie(movieText) {
+        let me = this;
+
         fetch(`http://www.omdbapi.com/?apikey=628b3dc3&s=` + movieText)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+                me.onMovieListChanged({movies: data, fromSearch: true});
             })
             .catch((error) => {
                 console.log(error);

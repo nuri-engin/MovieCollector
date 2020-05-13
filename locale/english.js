@@ -1,6 +1,7 @@
 export  default {
     APP_DESC: 'Movie Collector V2',
 
+    add: 'Add',
     bin: 'Bin',
     delete: 'Delete',
     export: 'Export',
