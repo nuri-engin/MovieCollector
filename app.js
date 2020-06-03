@@ -72,10 +72,11 @@ app.get('/api/delete/:id', routes.remove); // API delete route and callback (see
 // if route not found, respond with 404
 app.use(function(req, res, next){
 
-	var jsonData = {
+	let jsonData = {
 		status: 'ERROR',
 		message: 'Sorry, we cannot find the requested URI'
-	}
+	};
+
 	// set status as 404 and respond with data
   res.status(404).send(jsonData);
 
