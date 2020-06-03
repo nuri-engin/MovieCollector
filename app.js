@@ -3,15 +3,15 @@
  * Module dependencies.
  */
 
-var express = require('express');
-var http = require('http');
-var path = require('path');
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
+let express = require('express'),
+    http = require('http'),
+    path = require('path'),
+    mongoose = require('mongoose'),
+    bodyParser = require('body-parser'),
+    methodOverride = require('method-override');
 
 // the ExpressJS App
-var app = express();
+let app = express();
 
 // configuration of expressjs settings for the web server.
 
@@ -28,12 +28,12 @@ app.db = mongoose.connect(process.env.MONGOLAB_URI, {
     useUnifiedTopology: true,
     useCreateIndex: true
 });
+
 console.log("connected to database");
 
 /**
  * CORS support for AJAX requests
  */
-
 app.all('*', function(req, res, next){
   if (!req.get('Origin')) return next();
   // use "*" here to accept any origin
@@ -46,7 +46,6 @@ app.all('*', function(req, res, next){
 });
 
 // api baseURI is at /api/
-
 // API Routes
 
 // CREATE - http://appname.com/api/create (POST)
@@ -57,7 +56,7 @@ app.all('*', function(req, res, next){
 
 // ROUTES, logic is in routes/index.js
 
-var routes = require('./routes/index.js');
+let routes = require('./routes/index.js');
 
 // home route is not really an API route, but does respond back
 app.get('/', routes.index); // calls index function in /routes/index.js

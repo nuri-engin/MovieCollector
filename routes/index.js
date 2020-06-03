@@ -22,7 +22,7 @@ exports.index = function(req, res) {
 
 	console.log("main route requested");
 
-	let data = {
+	var data = {
 		status: 'OK',
 		message: 'Welcome to the moon&nuri v1 API'
 	};
@@ -41,61 +41,68 @@ exports.index = function(req, res) {
 
 exports.create = function(req,res){
 
-	console.log(req.body);
 
 	// pull out the name and location
 	var name = req.body.name;
-	var location = req.body.location;
+	// var	location = req.body.location;
+
+	// console.log("location", req.body.location);
 
 	//now, geocode that location
-	geocoder.geocode(location, function ( err, data ) {
+	// geocoder.geocode(location, function ( err, data ) {
+	//
+	// });
 
+	// console.log("data of geocode :", data);
+
+	// if we get an error, or don't have any results, respond back with error
+	// if (err || data.status == 'ZERO_RESULTS'){
+	// 	var jsonData = {status:'ERROR', message: 'Error finding location'};
+	// 	res.json(jsonData);
+	// }
+
+	// otherwise, save the user
+
+	// var locationName = data.results[0].formatted_address; // the location name
+	// var lon = data.results[0].geometry.location.lng;
+	// var lat = data.results[0].geometry.location.lat;
+
+	// need to put the geo co-ordinates in a lng-lat array for saving
+	// var lnglat_array = [lon,lat];
+	// console.log("NAME going to be :", name);
+	//var reqBody =  JSON.parse(req.body);
+	console.log("NAME going to be :", name);
+	console.log("NAME parse :", typeof req.body);
+	console.log("NAME parse :", req.body.name);
+
+	var person = Person({
+		name: name,
+		// locationName: locationName,
+		// locationGeo: lnglat_array
+	});
+
+	// now, save that person to the database
+	// mongoose method, see http://mongoosejs.com/docs/api.html#model_Model-save
+	person.save(function(err,data){
+		// if err saving, respond back with error
+		if (err){
+			var jsonData = {status:'ERROR', message: 'Error saving person'};
+			return res.json(jsonData);
+		}
+
+		console.log('saved a new person!');
 		console.log(data);
 
-  	// if we get an error, or don't have any results, respond back with error
-  	if (err || data.status == 'ZERO_RESULTS'){
-  		var jsonData = {status:'ERROR', message: 'Error finding location'};
-  		res.json(jsonData);
-  	}
+		// now return the json data of the new person
+		var jsonData = {
+			status: 'OK',
+			person: data,
+			body: req.body
+		}
 
-  	// otherwise, save the user
+		return res.json(jsonData);
 
-	  var locationName = data.results[0].formatted_address; // the location name
-	  var lon = data.results[0].geometry.location.lng;
-		var lat = data.results[0].geometry.location.lat;
-
-  	// need to put the geo co-ordinates in a lng-lat array for saving
-  	var lnglat_array = [lon,lat];
-
-	  var person = Person({
-	  	name: name,
-	  	locationName: locationName,
-	  	locationGeo: lnglat_array
-	  });
-
-	  // now, save that person to the database
-		// mongoose method, see http://mongoosejs.com/docs/api.html#model_Model-save
-	  person.save(function(err,data){
-	  	// if err saving, respond back with error
-	  	if (err){
-	  		var jsonData = {status:'ERROR', message: 'Error saving person'};
-	  		return res.json(jsonData);
-	  	}
-
-	  	console.log('saved a new person!');
-	  	console.log(data);
-
-	  	// now return the json data of the new person
-	  	var jsonData = {
-	  		status: 'OK',
-	  		person: data
-	  	}
-
-	  	return res.json(jsonData);
-
-	  })
-
-	});
+	})
 }
 
 /**
@@ -227,8 +234,8 @@ exports.update = function(req,res){
 }
 
 /**
- * GET '/api/delete/:id'
- * Receives a GET request specifying the user to delete
+ * GET '/api/devare/:id'
+ * Receives a GET request specifying the user to devare
  * @param  {String} req.param('id'). The userId
  * @return {Object} JSON
  */
@@ -240,14 +247,14 @@ exports.remove = function(req,res){
 	// Mongoose method, http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove
 	Person.findByIdAndRemove(requestedId,function(err, data){
 		if(err || data == null){
-  		var jsonData = {status:'ERROR', message: 'Could not find that person to delete'};
+  		var jsonData = {status:'ERROR', message: 'Could not find that person to devare'};
   		return res.json(jsonData);
 		}
 
 		// otherwise, respond back with success
 		var jsonData = {
 			status: 'OK',
-			message: 'Successfully deleted id ' + requestedId
+			message: 'Successfully devared id ' + requestedId
 		}
 
 		res.json(jsonData);
