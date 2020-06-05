@@ -1,52 +1,31 @@
-
 /**
  * Module dependencies.
  */
-const express = require('express'),
-    http = require('http'),
-    //path = require('path'),
-    mongoose = require('mongoose'),
-    bodyParser = require('body-parser'),
-    methodOverride = require('method-override');
-
-// the ExpressJS App
+const express = require('express');
+const cors = require('cors');
+const mongoose = require('mongoose');
 const app = express();
+const port = process.env.PORT || 5000;
 
-// configuration of expressjs settings for the web server.
+require('dotenv').config();
+app.use(cors());
+app.use(express.json());
 
-// server port number
-app.set('port', process.env.PORT || 5000);
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(methodOverride());
-
-// connecting to database
-app.db = mongoose.connect(process.env.MONGOLAB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true
+mongoose.connect(process.env.MONGOLAB_URI, {
+	useNewUrlParser: true,
+	useCreateIndex: true,
+	useUnifiedTopology: true,
+	useFindAndModify: false
 });
 
-console.log("connected to database");
-
-/**
- * CORS support for AJAX requests
- */
-app.all('*', function(req, res, next){
-  if (!req.get('Origin')) return next();
-  // use "*" here to accept any origin
-  res.set('Access-Control-Allow-Origin', '*');
-  res.set('Access-Control-Allow-Methods', 'PUT');
-  res.set('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type');
-  // res.set('Access-Control-Allow-Max-Age', 3600);
-  if ('OPTIONS' === req.method) return res.send(200);
-  next();
+const connection = mongoose.connection;
+connection.once('open', () => {
+    console.log("MongoDB database connection established successfully");
 });
+
 
 // api baseURI is at /api/
 // API Routes
-
 // CREATE - http://appname.com/api/create (POST)
 // RETRIEVE 1 - http://appname.com/api/get/:id (GET)
 // RETRIEVE ALL - http://appname.com/api/get (GET)
@@ -79,7 +58,6 @@ app.use(function(req, res, next){
 
 });
 
-// create NodeJS HTTP server using 'app'
-http.createServer(app).listen(app.get('port'), function(){
-  console.log("Express server listening on port " + app.get('port'));
+app.listen(port, () => {
+    console.log(`Server is running on port: ${port}`);
 });
