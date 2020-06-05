@@ -182,7 +182,7 @@ exports.remove = function(req,res){
 		if (err || data == null) {
 			let jsonData = {
 				status:'ERROR',
-				message: 'Could not find that person to devare'
+				message: 'Could not find that person to remove'
 			};
 
 			return res.json(jsonData);
@@ -191,7 +191,7 @@ exports.remove = function(req,res){
 		// otherwise, respond back with success
 		let jsonData = {
 			status: 'OK',
-			message: 'Successfully devared id ' + requestedId
+			message: 'Successfully removed id ' + requestedId
 		};
 
 		res.json(jsonData);
