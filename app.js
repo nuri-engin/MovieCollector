@@ -2,8 +2,7 @@
 /**
  * Module dependencies.
  */
-
-let express = require('express'),
+const express = require('express'),
     http = require('http'),
     path = require('path'),
     mongoose = require('mongoose'),
@@ -11,7 +10,7 @@ let express = require('express'),
     methodOverride = require('method-override');
 
 // the ExpressJS App
-let app = express();
+const app = express();
 
 // configuration of expressjs settings for the web server.
 
@@ -41,7 +40,7 @@ app.all('*', function(req, res, next){
   res.set('Access-Control-Allow-Methods', 'PUT');
   res.set('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type');
   // res.set('Access-Control-Allow-Max-Age', 3600);
-  if ('OPTIONS' == req.method) return res.send(200);
+  if ('OPTIONS' === req.method) return res.send(200);
   next();
 });
 
@@ -55,8 +54,7 @@ app.all('*', function(req, res, next){
 // DELETE - http://appname.com/api/delete/:id (DELETE)
 
 // ROUTES, logic is in routes/index.js
-
-let routes = require('./routes/index.js');
+const routes = require('./routes/index.js');
 
 // home route is not really an API route, but does respond back
 app.get('/', routes.index); // calls index function in /routes/index.js
@@ -72,7 +70,7 @@ app.get('/api/delete/:id', routes.remove); // API delete route and callback (see
 app.use(function(req, res, next){
 
 	let jsonData = {
-		status: 'ERROR',
+		status: 'ERROR!',
 		message: 'Sorry, we cannot find the requested URI'
 	};
 

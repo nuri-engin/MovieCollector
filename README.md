@@ -197,3 +197,5 @@ To add a new node package, do the following in terminal:
 
 The --save flag will automatically include the package in package.json as a dependency.
 
+#Excutable commands
+* nf run nodemon app.js > Local watch application with nodemon instant save.
