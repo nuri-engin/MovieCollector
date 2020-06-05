@@ -1,15 +1,10 @@
-
 /*
  * routes/index.js
  *
  * Routes contains the functions (callbacks) associated with request urls.
  */
-
-// dependencies
-var geocoder = require('geocoder');
-
 // our db model
-var Person = require("../models/model.js");
+const Person = require("../models/model.js");
 
 /**
  * GET '/'
@@ -17,12 +12,10 @@ var Person = require("../models/model.js");
  * @param  {Object} req
  * @return {Object} json
  */
-
-exports.index = function(req, res) {
-
+exports.index = (req, res) => {
 	console.log("main route requested");
 
-	var data = {
+	let data = {
 		status: 'OK',
 		message: 'Welcome to the moon&nuri v1 API'
 	};
@@ -30,7 +23,7 @@ exports.index = function(req, res) {
 	// respond back with the data
 	res.json(data);
 
-}
+};
 
 /**
  * POST '/api/create'
