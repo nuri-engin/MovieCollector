@@ -134,7 +134,6 @@ exports.getAll = function(req,res){
  * @param  {Object} req. An object containing the different attributes of the Person
  * @return {Object} JSON
  */
-
 exports.update = function(req,res){
 	let requestedId = req.param('id');
 
