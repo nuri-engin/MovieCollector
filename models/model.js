@@ -1,14 +1,21 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 // See http://mongoosejs.com/docs/schematypes.html
+const personSchema = new Schema({
+	name: {
+		type: String,
+		required: true,
+		unique: true,
+		minlength: 3,
+		trim: true
+	},
 
-var personSchema = new Schema({
-	name: String,
-	//locationGeo : { type: [Number], index: { type: '2dsphere', sparse: true } },
-	//locationName : String,
-	dateAdded : { type: Date, default: Date.now },
-})
+	dateAdded: {
+		type: Date,
+		default: Date.now
+	}
+});
 
 // export 'Person' model so we can interact with it in other files
-module.exports = mongoose.model('Person',personSchema);
+module.exports = mongoose.model('Person', personSchema);

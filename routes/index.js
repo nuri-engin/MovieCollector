@@ -40,13 +40,14 @@ exports.create = function(req,res){
 
 	// now, save that person to the database
 	// mongoose method, see http://mongoosejs.com/docs/api.html#model_Model-save
-	person.save((err,data) => {
+	person.save((err, data) => {
 
 		// if err saving, respond back with error
 		if (err){
 			let jsonData = {
 				status:'ERROR',
-				message: 'Error saving person'
+				message: 'Error saving person',
+				err: err
 			};
 
 			return res.json(jsonData);
@@ -138,7 +139,7 @@ exports.update = function(req,res){
 
 	// now, update that person
 	// mongoose method, see http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate
-	Person.findByIdAndUpdate(requestedId, dataToUpdate, (err,data) => {
+	Person.findByIdAndUpdate(requestedId, dataToUpdate, (err, data) => {
 
 		// if err saving, respond back with error
 		if (err){
