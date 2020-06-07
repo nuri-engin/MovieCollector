@@ -26,7 +26,7 @@ export class MovieList extends Component {
                 <Card.Img style={imgStyle} variant="top" src={movie.Poster} />
                 <Card.Body>
                   <Card.Title>{movie.Title}</Card.Title>
-                  <Card.Text>Date of release : {movie.Year}</Card.Text>
+                  <Card.Text> Date of release : {movie.Year}</Card.Text>
                   <Button
                     style={{
                       background: "#bc3232",
