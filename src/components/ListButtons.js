@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 
 const btnStyle = {
-  margin: 5,
+  margin: 3,
   background: "transparent",
-  padding: 2,
+  padding: 1,
   fontSize: 11,
   color: "#105fa6",
   fontWeight: "bold",
@@ -22,7 +22,7 @@ const createListButton = (title) => (
 function ListButtons() {
   return (
     <div>
-      {createListButton("LIST")}
+      {createListButton("MY LIST")}
       {createListButton("EXPORT")}
       {createListButton("IMPORT")}
     </div>
