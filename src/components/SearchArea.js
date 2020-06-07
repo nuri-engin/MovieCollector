@@ -7,6 +7,8 @@ const SearchWrapper = styled.div`
   width: 100%;
 `;
 
+const testVar = "testVariable";
+
 const btnStyles = { color: "#ffffff", fontWeight: "bold", fontSize: 12 };
 
 export class SearchArea extends Component {
