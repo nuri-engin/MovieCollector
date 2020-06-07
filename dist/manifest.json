@@ -1,0 +1,16 @@
+{
+  "short_name": "Movie Collector",
+  "name": "Movie Collector",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "description": "Movie Collector Application",
+  "icons": {
+    "512": "movieApp_icon.png"
+  },
+  "browser_action": {
+    "default_icon": "movieApp_icon.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": ["activeTab", "declarativeContent", "storage"],
+  "content_security_policy": "script-src 'self' 'sha256-WDhufSqZOEoWULzS4Nwz11MNyHzZClVYbQ2JSt1vfkw'; object-src 'self'"
+}
